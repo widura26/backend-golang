@@ -24,17 +24,17 @@ func CreateUser(c echo.Context) error {
 
 	userModel := new(models.User)
 
-	if err := c.Bind(&userModel); err != nil {
+	if err := c.Bind(userModel); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
 	}
 
 	userModel.ID = uuid.New().String()
 
-	if err := c.Validate(&userModel); err != nil {
+	if err := c.Validate(userModel); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]string{"error": err.Error()})
 	}
 
-	if err := config.DB.Create(&userModel).Error; err != nil {
+	if err := config.DB.Create(userModel).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"error": err.Error()})
 	}
 
