@@ -1,0 +1,9 @@
+POST http://localhost:1323/create-user
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "Widura Hasta",
+    "email": "widurategalrejo@gmail.com",
+    "password": "widura26"
+}
