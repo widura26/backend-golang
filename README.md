@@ -36,6 +36,8 @@ Untuk mengelola migrasi database pada project ini, kita menggunakan package [gol
 
 ```go get -u gorm.io/driver/mysql```
 
+## Other Source
+
 
 ![alt text](image.png)
 ![alt text](image-1.png)
