@@ -1,9 +1,0 @@
-POST http://localhost:1323/auth/create-user
-Content-Type: application/json
-Accept: application/json
-
-{
-    "name": "Carl",
-    "email": "carl@gmail.com",
-    "password": "carl26"
-}
