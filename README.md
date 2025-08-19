@@ -5,7 +5,8 @@
 Untuk mengelola migrasi database pada project ini, kita menggunakan package [golang-migrate](https://github.com/golang-migrate/migrate).
 
 ### ⚙️ Install migrate CLI
-Jalankan perintah berikut untuk menginstall migrate CLI:
+<span>Jalankan perintah berikut untuk menginstall migrate CLI:</span>
+
 ```go install -tags 'mysql' github.com/golang-migrate/migrate/v4/cmd/migrate@latest``` 
 ```migrate create -ext sql -dir db/migrations create_users_table```
 
