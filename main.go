@@ -2,7 +2,7 @@ package main
 
 import (
 	"backend-golang/config"
-	"backend-golang/controllers"
+	"backend-golang/routes"
 	"net/http"
 
 	"github.com/go-playground/validator"
@@ -24,7 +24,6 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	e.GET("/users", controllers.GetUser)
-	e.POST("/create-user", controllers.CreateUser)
+	routes.RegisterRoutes(e)
 	e.Logger.Fatal(e.Start(":1323"))
 }
