@@ -1,6 +1,7 @@
 # BACKEND GOLANG FOR REST API
+<p>Proyek ini merupakan dummy project untuk pembelajaran semata. Framework yang digunakan pada proyek ada Golang Echo</p>
 
-## Dtabase Migrations & Connection
+## Database Migrations & Connection
 
 Untuk mengelola migrasi database pada project ini, kita menggunakan package [golang-migrate](https://github.com/golang-migrate/migrate).
 
@@ -25,6 +26,16 @@ Untuk mengelola migrasi database pada project ini, kita menggunakan package [gol
 <span>command for rollback 1 step : </span>
 
 `migrate -path db/migrations -database "mysql://root:root123@tcp(127.0.0.1:3306)/golang_db" down 1`
+
+## Gorm package for ORM
+<span>Jalankan perintah di bawah ini :</span>
+
+```go get -u gorm.io/gorm``` 
+
+<span>Dikarenakan pada proyek ini menggunakan mysql, diperlukan untuk menginstal driver mysql yang juga disediakan oleh GORM</span>
+
+```go get -u gorm.io/driver/mysql```
+
 
 ![alt text](image.png)
 ![alt text](image-1.png)
