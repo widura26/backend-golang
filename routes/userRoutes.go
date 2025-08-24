@@ -8,7 +8,10 @@ import (
 
 func UserRoutes(e *echo.Echo) {
 	auth := e.Group("/auth")
-	auth.GET("/user", controllers.GetUser)
 	auth.POST("/signup", controllers.Signup)
 	auth.POST("/signin", controllers.Signin)
+}
+
+func PostRoutes(r *echo.Group) {
+	r.GET("/user", controllers.GetUser)
 }
