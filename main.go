@@ -2,6 +2,7 @@ package main
 
 import (
 	"backend-golang/config"
+	"backend-golang/dto"
 	"backend-golang/routes"
 	"net/http"
 
@@ -11,12 +12,6 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
-
-type jwtCustomClaims struct {
-	Name  string `json:"name"`
-	Admin bool   `json:"admin"`
-	jwt.RegisteredClaims
-}
 
 type CustomValidator struct {
 	validator *validator.Validate
@@ -39,11 +34,13 @@ func main() {
 
 	jwtConfig := echojwt.Config{
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
-			return new(jwtCustomClaims)
+			return new(dto.JwtCustomClaims)
 		},
 		SigningKey: []byte("secret"),
 	}
+
 	r := e.Group("/restricted")
 	r.Use(echojwt.WithConfig(jwtConfig))
+	routes.PostRoutes(r)
 	e.Logger.Fatal(e.Start(":1323"))
 }

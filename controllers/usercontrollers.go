@@ -19,7 +19,9 @@ var (
 )
 
 func GetUser(c echo.Context) error {
-	return c.String(http.StatusOK, "This is Widura Hasta")
+	user := c.Get("user").(*jwt.Token)
+	claims := user.Claims.(*dto.JwtCustomClaims)
+	return c.JSON(http.StatusOK, claims)
 }
 
 func UpdateUser(c echo.Context) error {
