@@ -21,11 +21,15 @@ Untuk mengelola migrasi database pada project ini, kita menggunakan package [gol
 
 <span>command for rollback : </span>
 
-`migrate -path db/migrations -database "mysql://root:root123@tcp(127.0.0.1:3306)/golang_db" down`
+`migrate -path db/migrations -database "mysql://root:Widura260503@tcp(127.0.0.1:3307)/go_rest_api" down`
 
 <span>command for rollback 1 step : </span>
 
 `migrate -path db/migrations -database "mysql://root:root123@tcp(127.0.0.1:3306)/golang_db" down 1`
+
+## Bagaimana Jika terdapat perubahan kolom atau tabel pada migration
+<p>Untuk Development, mungkin dapat menggunakan perintah rollback dan memodifikasi migration yang tersedia. 
+Jika dalam tahap production, dapat menjalankan perintah migration baru untuk memodifikasi kolom atau tabel</p>
 
 ## Gorm package for ORM
 <span>Jalankan perintah di bawah ini :</span>
@@ -35,6 +39,7 @@ Untuk mengelola migrasi database pada project ini, kita menggunakan package [gol
 <span>Dikarenakan pada proyek ini menggunakan mysql, diperlukan untuk menginstal driver mysql yang juga disediakan oleh GORM</span>
 
 ```go get -u gorm.io/driver/mysql```
+
 
 ## Other Source
 
