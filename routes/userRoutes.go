@@ -9,12 +9,8 @@ import (
 func RegisterRoutes(e *echo.Echo) {
 	// Group untuk auth
 	auth := e.Group("/auth")
-	auth.GET("/users", controllers.GetUser)
-	auth.POST("/create-user", controllers.CreateUser)
-
-	// Group untuk user
-	// user := e.Group("/users")
-	// user.GET("", controllers.GetUsers)
-	// user.GET("/:id", controllers.GetUserByID)
-	// user.POST("", controllers.CreateUser)
+	auth.GET("/user", controllers.GetUser)
+	auth.POST("/signup", controllers.Signup)
+	auth.POST("/signin", controllers.Signin)
+	auth.GET("/update-user", controllers.UpdateUser)
 }
