@@ -1,7 +1,7 @@
 package dto
 
 import (
-	"github.com/golang-jwt/jwt/v4"
+	"github.com/golang-jwt/jwt/v5"
 )
 
 type LoginRequest struct {
@@ -12,4 +12,9 @@ type LoginRequest struct {
 type JwtCustomClaims struct {
 	Username string `json:"username"`
 	jwt.RegisteredClaims
+}
+
+// Valid implements jwt.Claims.
+func (j *JwtCustomClaims) Valid() error {
+	panic("unimplemented")
 }

@@ -7,8 +7,8 @@ import (
 	"net/http"
 
 	"github.com/go-playground/validator"
-	"github.com/golang-jwt/jwt/v4"
-	echojwt "github.com/labstack/echo-jwt"
+	"github.com/golang-jwt/jwt/v5"
+	echojwt "github.com/labstack/echo-jwt/v4"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 )
@@ -30,8 +30,6 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "Hello, World!")
 	})
-	routes.UserRoutes(e)
-
 	jwtConfig := echojwt.Config{
 		NewClaimsFunc: func(c echo.Context) jwt.Claims {
 			return new(dto.JwtCustomClaims)
@@ -39,8 +37,9 @@ func main() {
 		SigningKey: []byte("secret"),
 	}
 
-	r := e.Group("/restricted")
-	r.Use(echojwt.WithConfig(jwtConfig))
-	routes.PostRoutes(r)
+	r := e.Group("/api")
+	routes.UserRoutes(r, jwtConfig)
+	routes.PostRoutes(r, jwtConfig)
+
 	e.Logger.Fatal(e.Start(":1323"))
 }
