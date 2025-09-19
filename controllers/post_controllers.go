@@ -30,3 +30,17 @@ func CreatePost(c echo.Context) error {
 	})
 
 }
+
+func GetPosts(c echo.Context) error {
+	lock.Lock()
+	defer lock.Unlock()
+
+	var posts []models.Post
+	getAllData := config.DB.Find(&posts)
+
+	if getAllData.Error != nil {
+		return c.JSON(http.StatusBadRequest, getAllData.Error.Error())
+	}
+
+	return c.JSON(http.StatusOK, posts)
+}

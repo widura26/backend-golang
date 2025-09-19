@@ -8,7 +8,8 @@ import (
 )
 
 func PostRoutes(r *echo.Group, jwtConfig echojwt.Config) {
-	post := r.Group("/post")
+	post := r.Group("/posts")
 	post.Use(echojwt.WithConfig(jwtConfig))
+	post.GET("/", controllers.GetPosts)
 	post.POST("/create", controllers.CreatePost)
 }
