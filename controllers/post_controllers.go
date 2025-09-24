@@ -8,6 +8,10 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+type ErrorResponse struct {
+	Error string `json:"error"`
+}
+
 func CreatePost(c echo.Context) error {
 	lock.Lock()
 	post := new(models.Post)
@@ -43,4 +47,19 @@ func GetPosts(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, posts)
+}
+
+func GetPost(c echo.Context) error {
+	lock.Lock()
+	defer lock.Unlock()
+
+	id := c.Param("id")
+	var post models.Post
+	result := config.DB.First(&post, "id = ?", id)
+
+	if result.Error != nil {
+		return c.JSON(http.StatusInternalServerError, map[string]string{"error": result.Error.Error()})
+	}
+
+	return c.JSON(http.StatusOK, post)
 }

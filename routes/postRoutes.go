@@ -10,6 +10,7 @@ import (
 func PostRoutes(r *echo.Group, jwtConfig echojwt.Config) {
 	post := r.Group("/posts")
 	post.Use(echojwt.WithConfig(jwtConfig))
-	post.GET("/", controllers.GetPosts)
 	post.POST("/create", controllers.CreatePost)
+	post.GET("/", controllers.GetPosts)
+	post.GET("/:id", controllers.GetPost)
 }
